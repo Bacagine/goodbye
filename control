@@ -1,0 +1,6 @@
+Package: goodbye
+Version: 0.3
+Architecture: all
+Maintainer: Gustavo Bacagine <gustavo.bacagine@protonmail.com>
+Installed-Size: 640
+Description: Goodbye is a simple C program developed to study software packaging on linux systems

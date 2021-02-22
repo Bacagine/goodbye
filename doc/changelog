@@ -1,11 +1,22 @@
 Author: Gustavo Bacagine <gustavo.bacagine@protonmail.com>
+Date:   Mon Feb 22 9:22 2021
+    goodbye v 0.3
+    created file:
+     - control
+    edit files:
+     - README.md
+     - include/goodbye.h
+     - src/goodbye.c
+     - src/main.c
+     - doc/README
+
+Author: Gustavo Bacagine <gustavo.bacagine@protonmail.com>
 Date:   Sat Feb 20 18:07 2021
     goodbye v 0.2
     remove files:
      - include/Makefile
      - include/Makefile.am
-    edit the files:
-     - README.md
+    edit files:
      - doc/changelog
      - doc/README
      - man/goodbye.1
