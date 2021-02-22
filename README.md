@@ -1,8 +1,6 @@
 # Goodbye
 
-Goodbye is a simple C program developed to
-
-study software packaging on linux systems
+Goodbye is a simple C program developed to study software packaging on linux systems
 
 # Build and Install
 
