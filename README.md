@@ -16,22 +16,22 @@ Goodbye is a simple C program developed to study software packaging on linux sys
 
 # Generate a .deb package and install
 
-`$ git clone https://github.com/Bacagine/goodbye.git`
+`git clone https://github.com/Bacagine/goodbye.git`
 
-`$ cd goodbye`
+`cd goodbye`
 
-`$ ./autogen.sh`
+`./autogen.sh`
 
-`$ ./configure --prefix=/usr --mandir=/usr/share/man --docdir=/usr/share/doc`
+`./configure --prefix=/usr --mandir=/usr/share/man --docdir=/usr/share/doc`
 
-`$ make`
+`make`
 
-`# mkdir -p /tmp/goodbye/DEBIAN`
+`mkdir -p /tmp/goodbye/DEBIAN`
 
-`# cp control /tmp/goodbye/DEBIAN`
+`cp control /tmp/goodbye/DEBIAN`
 
-`# make install DESTDIR=/tmp/goodbye`
+`make install DESTDIR=/tmp/goodbye`
 
-`# dpkg-deb /tmp/goodbye /tmp/goodbye.deb`
+`dpkg-deb /tmp/goodbye /tmp/goodbye.deb`
 
-`# apt-get install /tmp/goodbye.deb`
+`apt-get install /tmp/goodbye.deb`
