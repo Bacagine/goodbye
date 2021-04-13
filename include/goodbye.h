@@ -22,21 +22,20 @@
  * Developed by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  * 
  * Date: 22/Feb/2021
+ * Date of last modification: 13/Apr/2021
  */
 
 #ifndef _GOODBYE_H
 #define _GOODBYE_H
 
-#define HELP        "-h, --help\t\tdisplay this help and exit\n\
--v, --version\t\tdisplay version information and exit\n\
--t, --traditional\tuse traditional greeting\n\
--g TEXT\t\tprint a TEXT"
-#define TRADICIONAL "goodbye word!!!"
+/* Set the program name */
+void set_prog_name(char *prog_name, const char *str);
 
-/* Default message */
-static const char goodbye_msg[16] = "Goodbye World!!!";
+/* Show a help message in terminal */
+void print_help(const char *prog_name);
 
-/* Show a message in terminal */
-void say_goodbye(const char *str);
+/* Show the version of program */
+void print_version(void);
 
 #endif
+

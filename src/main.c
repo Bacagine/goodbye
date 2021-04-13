@@ -25,35 +25,43 @@
  */
 
 #include <stdio.h>
+#include <locale.h>
 #include <string.h>
+#include <libintl.h>
 #include <config.h>
 #include "../include/goodbye.h"
+#include "../include/sys_constants.h"
 
 int main(int argc, char **argv){
     if(argc == 1){
-        say_goodbye(goodbye_msg);
+		setlocale(LC_ALL, "");
+		
+		bindtextdomain(PACKAGE, LOCALEDIR);
+		textdomain(PACKAGE);
+		
+        printf(gettext("Goodbye World!!!\n"));
     }
     else if(argc == 2){
-        if(!strcmp(argv[1], "-h") || !strcmp(argv[1], "--help")){
-            printf("Goodbye %s\n", VERSION);
-            puts(HELP);
+		if(!strcmp(argv[1], "-h") || !strcmp(argv[1], "--help")){
+			print_version();
+            print_help(argv[0]);
         }
         else if(!strcmp(argv[1], "-v") || !strcmp(argv[1], "--version")){
-            puts(VERSION);
+            print_version();
         }
         else if(!strcmp(argv[1], "-t") || !strcmp(argv[1], "--tradicional")){
-            say_goodbye(TRADICIONAL);
+			printf(gettext("goodbye world!!!\n"));
         }
         else{
-            fprintf(stderr, "\033[1;31mE:\033[m \033[1mInvalid use!\nPlease use %s -h to see help\033[m\n", argv[0]);
+            fprintf(stderr, gettext("\033[1;31mE:\033[m \033[1mInvalid use!\nPlease use %s -h to see help\033[m\n"), argv[0]);
             return 1;
         }
     }
     else if(argc == 3 && !strcmp(argv[1], "-g")){
-            say_goodbye(argv[2]);
+            puts(gettext(argv[2]));
     }
     else{
-        fprintf(stderr, "\033[1;31mE:\033[m \033[1mInvalid use!\nPlease use %s -h to see help\033[m\n", argv[0]);
+        fprintf(stderr, gettext("\033[1;31mE:\033[m \033[1mInvalid use!\nPlease use %s -h to see help\033[m\n"), argv[0]);
         return 1;
     }
     

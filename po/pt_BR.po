@@ -1,0 +1,40 @@
+# 
+# 
+# 
+# 
+# 
+
+msgid ""
+msgstr ""
+"Project-Id-Version: goodbye 1.0\n"
+"Report-Msgid-Bugs-To: gustavo.bacagine@protonmail.com"
+"POT-Creation-Date: 2021-04-13\n"
+"Last-Translator: Gustavo Bacagine <gustavo.bacagine@protonmail.com>\n"
+"Language: pt_BR\n"
+"Content-Type: text/palin; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Goodbye World!!!\n"
+msgstr "Adeus Mundo!!!\n"
+
+msgid "goodbye world!!!\n"
+msgstr "adeus mundo!!!\n"
+
+msgid "\033[1;31mE:\033[m \033[1mInvalid use!\nPlease use %s -h to see help\033[m\n"
+msgstr "\033[1;31mE:\033[m \033[1mUso invalido!\nPor favor use %s -h para ver a ajuda\033[m\n"
+
+msgid "Usage %s [OPTION]...\n"
+msgstr "Uso %s [OPÇÃO]...\n"
+
+msgid ""
+"	-h, --help\t\tdisplay this help and exit\n\
+	-v, --version\t\tdisplay version information and exit\n\
+	-t, --traditional\tuse traditional greeting\n\
+	-g TEXT\t\tprint a TEXT"
+msgstr ""
+"	-h, --help\t\tmostra esta ajuda e sai\n\
+	-v, --version\t\tmostra informações sobre a versão e sai\n\
+	-t, --traditional\tuss a saudação tradicional\n\
+	-g TEXT\t\tmostra o TEXT"
+
+

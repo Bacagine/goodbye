@@ -22,17 +22,30 @@
  * Developed by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  * 
  * Date: 22/Feb/2021
+ * Date of last modification: 13/Apr/2021
  */
 
 #include <stdio.h>
 #include <string.h>
+#include <libintl.h>
+#include <config.h>
 #include "../include/goodbye.h"
 
-void say_goodbye(const char *str){
-    int i =0;
-    while(i < strlen(str)-1){
-        putchar(str[i]);
-        i++;
-    }
-    putchar('\n');
+void set_prog_name(char *prog_name, const char *str){
+	strcpy(prog_name, str);
 }
+
+void print_help(const char *prog_name){
+	printf(gettext("Usage %s [OPTION]...\n"), prog_name);
+	
+	fputs(gettext("\
+	-h, --help\t\tdisplay this help and exit\n\
+	-v, --version\t\tdisplay version information and exit\n\
+	-t, --traditional\tuse traditional greeting\n\
+	-g TEXT\t\tprint a TEXT"), stdout);
+}
+
+void print_version(void){
+	printf("Goodbye %s\n", VERSION);
+}
+
