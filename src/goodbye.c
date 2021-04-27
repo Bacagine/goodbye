@@ -36,13 +36,14 @@ void set_prog_name(char *prog_name, const char *str){
 }
 
 void print_help(const char *prog_name){
-	printf(gettext("Usage %s [OPTION]...\n"), prog_name);
+	printf(gettext("\
+Usage %s [OPTION]...\n"), prog_name);
 	
 	fputs(gettext("\
 	-h, --help\t\tdisplay this help and exit\n\
 	-v, --version\t\tdisplay version information and exit\n\
 	-t, --traditional\tuse traditional greeting\n\
-	-g TEXT\t\tprint a TEXT"), stdout);
+	-g TEXT\t\t\tprint a TEXT\n"), stdout);
 }
 
 void print_version(void){
