@@ -1,9 +1,10 @@
-/* goodbye.c: Implematation of the say_goodbye function
+/**
+ * goodbye.c: Implematation of the say_goodbye function
  * 
- * goodbye is a software created to teste Gnu Autotools
+ * goodbye is a software created to teste GNU Autotools
  * and Linux Packaging
  * 
- * Copyright (C) 2021  Gustavo Bacagine
+ * Copyright (C) 2021 - 2023 Gustavo Bacagine
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -19,34 +20,152 @@
  * along with this program; if not, 
  * see <https://www.gnu.org/licenses/old-licenses/gpl-2.0.html>.
  * 
- * Developed by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
+ * Written by Gustavo Bacagine <gustavo.bacagine@protonmail.com>
  * 
  * Date: 22/Feb/2021
- * Date of last modification: 13/Apr/2021
+ * Date of last modification: 28/Sep/2023
  */
 
-#include <stdio.h>
-#include <string.h>
-#include <libintl.h>
-#include <config.h>
 #include "../include/goodbye.h"
 
-void set_prog_name(char *prog_name, const char *str){
-	strcpy(prog_name, str);
+int opterr = 0;
+static const char *kszOptStr = "hvtg:";
+
+char *szGetProgramName(const char *szPathName)
+{
+  char *pszProgramName = 0;
+  
+  if((pszProgramName = strrchr(szPathName, '/')) != 0)
+  {
+    ++pszProgramName; /* Skip '/' */
+  }
+  else
+  {
+    pszProgramName = (char *) szPathName; /* Nenhum dir. component */
+  }
+
+  return pszProgramName;
 }
 
-void print_help(const char *prog_name){
-	printf(gettext("\
-Usage %s [OPTION]...\n"), prog_name);
-	
-	fputs(gettext("\
-	-h, --help\t\tdisplay this help and exit\n\
-	-v, --version\t\tdisplay version information and exit\n\
-	-t, --traditional\tuse traditional greeting\n\
-	-g TEXT\t\t\tprint a TEXT\n"), stdout);
+void vPrintUsage(void)
+{
+  int ii = 0;
+    
+  printf(_("Usage: %s [OPTION]...\n\n"
+         "%s\n\n"
+         "Options:\n"), gkpszProgramName, DESCRIPTION);
+  while(astCmdOpt[ii].val != 0)
+  {
+    if(astCmdOpt[ii].has_arg == required_argument)
+    {
+      printf(_("  -%c <%s>\n"
+             "    %s\n\n"), astCmdOpt[ii].val, kpszCmdArguments[ii],
+                       kpszCmdMessages[ii]);
+    }
+    else
+    {
+      printf(_("  -%c, --%s\n"
+             "    %s\n\n"), astCmdOpt[ii].val, astCmdOpt[ii].name,
+                       kpszCmdMessages[ii]);
+    }
+
+    ii++;
+  }
 }
 
-void print_version(void){
-	printf("Goodbye %s\n", VERSION);
+void vPrintVersion(void)
+{
+  printf(_("%s %s\n"
+         "Build in %s %s\n"
+         "%s %s\n"
+         "For reporting bugs, send a e-mail to <%s>\n"
+         "Github: %s\n"), gkpszProgramName, 
+                          VERSION,
+                          __DATE__,
+                          __TIME__,
+                          COPYRIGHT,
+                          DEV_NAME,
+                          DEV_MAIL,
+                          GITHUB_URL
+  );
+}
+
+bool bStrIsEmpty(const char *kpszStr)
+{
+  if(kpszStr == NULL || !strcmp(kpszStr, "") || !strcmp(kpszStr, "\n"))
+  {
+    return true;
+  }
+  
+  return false;
+}
+
+bool bTerminalSupportColors(void)
+{
+  char *szTerm = getenv("TERM");
+  
+  if(bStrIsEmpty(szTerm) || !strcmp(szTerm, "dumb"))
+  {
+    return false;
+  }
+  
+  return true;
+}
+
+void vPrintErrorMessage(const char *kpszFmt, ...)
+{
+  va_list args;
+  char szMsg[256];
+  
+  memset(szMsg, 0, sizeof(szMsg));
+   
+  va_start(args, kpszFmt);
+  
+  /**
+   * Check if the terminal suport colors
+   */
+  if(bTerminalSupportColors() == false)
+  {
+    sprintf(szMsg, _("E: %s\n"), kpszFmt);
+
+    vfprintf(stderr, szMsg, args);
+    return;
+  }
+  
+  sprintf(szMsg, _("\033[1;31mE:\033[m %s\n"), kpszFmt);
+  
+  vfprintf(stderr, szMsg, args);
+
+  va_end(args);
+}
+
+bool bCommandLineIsOK(int argc, char **argv)
+{
+  int iCmdLineOpt = 0;
+  
+  while((iCmdLineOpt = getopt_long(argc, argv, kszOptStr, astCmdOpt, NULL )) != -1)
+  {
+    switch(iCmdLineOpt)
+    {
+      case 'h':
+        printf("%s %s\n", gkpszProgramName, VERSION);
+        vPrintUsage();
+        exit(EXIT_SUCCESS);
+      case 'v':
+        vPrintVersion();
+        exit(EXIT_SUCCESS);
+      case 't':
+        printf(_("goodbye world!!!\n")); 
+        break;
+      case 'g':
+        puts(optarg);
+        break;
+      case '?':
+      default:
+       return false; 
+    }
+  }
+
+  return true;
 }
 

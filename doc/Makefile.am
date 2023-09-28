@@ -1,1 +1,1 @@
-doc_DATA = README changelog COPYING
+doc_DATA = README.gz ChangeLog.gz COPYING.gz
