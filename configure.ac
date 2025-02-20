@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([goodbye], [0.5], [gustavo.bacagine@protonmail.com])
+AC_INIT([goodbye], [0.6], [gustavo.bacagine@protonmail.com])
 #AC_CONFIG_SRCDIR([config.h.in])
 AC_CONFIG_HEADERS([config.h])
 
