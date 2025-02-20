@@ -4,7 +4,7 @@
  * goodbye is a software created to teste GNU Autotools
  * and Linux Packaging
  * 
- * Copyright (C) 2021 - 2023 Gustavo Bacagine
+ * Copyright (C) 2021 - 2025 Gustavo Bacagine
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -54,7 +54,7 @@
  * Program information defines
  */
 #define DESCRIPTION    "goodbye is a software created to teste GNU Autotools and Linux Packaging"
-#define COPYRIGHT      "Copyright (C) 2021 - 2023"
+#define COPYRIGHT      "Copyright (C) 2021 - 2025"
 #define DEV_NAME       "Gustavo Bacagine"
 #define DEV_MAIL       "gustavo.bacagine@protonmail.com"
 #define GITHUB_URL     "https://www.github.com/Bacagine/goodbye"
