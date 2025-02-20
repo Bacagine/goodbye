@@ -156,10 +156,10 @@ bool bCommandLineIsOK(int argc, char **argv)
         exit(EXIT_SUCCESS);
       case 't':
         printf(_("goodbye world!!!\n")); 
-        break;
+        exit(EXIT_SUCCESS);
       case 'g':
         puts(optarg);
-        break;
+        exit(EXIT_SUCCESS);
       case '?':
       default:
        return false; 
